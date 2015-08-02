@@ -7,4 +7,6 @@
 
 ###### tmux config
 ###### irssi theme (based off beastie theme)
+###### this scrot showcases both 
+![git tag](https://github.com/dkeg/scrots/blob/master/_poly.png)
 
