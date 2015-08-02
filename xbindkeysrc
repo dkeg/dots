@@ -1,0 +1,51 @@
+## terminal
+ "urxvt" 
+MOD4 + Return 
+
+## dmenu
+ "demon"
+ MOD4 + p
+
+## browser
+ "iceweasel"
+ alt + b
+
+## stats
+ "popstat2"
+ alt + p
+
+## volume 
+    "~/bin/volume +"
+        alt + shift + equal 
+    "~/bin/volume -"
+        alt + shift + minus 
+    "~/bin/volume !"
+        alt + shift + F8 
+    "popvol %{c} $(~/bin/volume level)"
+        alt + shift + equal 
+    "popvol %{c} $(~/bin/volume level)"
+        alt + shift + minus 
+    "popvol %{c} $(~/bin/volume level)"
+        alt + shift + F8 
+
+## music
+    "~/bin/music +"
+        mod4 + shift + equal
+    "~/bin/music -"
+        mod4 + shift + minus
+    "~/bin/music play"
+        mod4 + Home
+    "~/bin/music pause"
+        mod4 + shift + Home
+    "~/bin/music shuffle"
+        mod4 + shift + S 
+    "popmus %{c} next song - $(~/bin/music artist)"
+        mod4 + shift + equal
+    "popmus %{c} previous song - $(~/bin/music artist)"
+        mod4 + shift + minus
+    "popmus %{c} music $(~/bin/music state)"
+        mod4 + Home
+    "popmus %{c} music $(~/bin/music state)"
+        mod4 + shift + Home
+    "popmus %{c} $(~/bin/music state)"
+        mod4 + shift + S 
