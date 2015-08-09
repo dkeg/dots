@@ -14,6 +14,17 @@ MOD4 + Return
  "popstat2"
  alt + p
 
+# ## scrot
+#"scrotnow"
+#Print
+
+#"scrotsel"
+#Shift + Print
+
+## suspend
+#"sudo pm-suspend"
+#Control + Escape
+
 ## volume 
     "~/bin/volume +"
         alt + shift + equal 
@@ -34,18 +45,18 @@ MOD4 + Return
     "~/bin/music -"
         mod4 + shift + minus
     "~/bin/music play"
-        mod4 + Home
-    "~/bin/music pause"
         mod4 + shift + Home
+    "~/bin/music pause"
+        mod4 + control + shift + Home
     "~/bin/music shuffle"
         mod4 + shift + S 
-    "popmus %{c} next song - $(~/bin/music artist)"
+    "popmus %{c}  "" "" $(~/bin/music artist)"
         mod4 + shift + equal
-    "popmus %{c} previous song - $(~/bin/music artist)"
+    "popmus %{c}  "" "" $(~/bin/music artist)"
         mod4 + shift + minus
-    "popmus %{c} music $(~/bin/music state)"
-        mod4 + Home
-    "popmus %{c} music $(~/bin/music state)"
+    "popmus %{c}  "" "" $(~/bin/music title)"
         mod4 + shift + Home
+    "popmus %{c}  "" "" $(~/bin/music title)"
+        mod4 + control + shift + Home
     "popmus %{c} $(~/bin/music state)"
         mod4 + shift + S 
