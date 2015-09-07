@@ -4,7 +4,7 @@
 
 ##### most of my stuff is pretty minimal
 - xbindkeys
-- [!sxhkd](https://github.com/dkeg/wmtls/blob/master/.sxhkdrc)
+- ![sxhkd](https://github.com/dkeg/wmtls/blob/master/.sxhkdrc)
 - tmux config
 - irssi theme (based off beastie theme)
 - weechat theme
