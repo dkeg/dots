@@ -2,7 +2,7 @@
   - Ping me if you want anything
   - You can also find me on linuxbbq
 
-###### most of my stuff is pretty minimal
+##### most of my stuff is pretty minimal
 - vimrc
 - xbindkeys
 - ![sxhkd](https://github.com/dkeg/wmtls/blob/master/.sxhkdrc)
