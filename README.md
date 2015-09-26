@@ -9,7 +9,6 @@
 - tmux config
 - irssi theme (based off beastie theme)
 - weechat theme
-- pentadactyl theme (takes xcolors for themes colors; requires xrdb color scraper)
 - scrot showcases irssi and tmux 
 - also see these ![scrots](https://github.com/dkeg/scrots)
 ![git tag](https://github.com/dkeg/scrots/blob/master/_poly.png)
