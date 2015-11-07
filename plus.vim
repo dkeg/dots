@@ -4,6 +4,8 @@
 " Author: itchyny
 " License: MIT License
 " Last Change: 2013/09/07 12:21:04.
+" Updated: dkeg
+" Date Updated: October 2015
 " =============================================================================
 let s:base03 = [ 0, 0 ]
 let s:base02 = [ 0, 0 ]
