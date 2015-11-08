@@ -10,6 +10,7 @@
 - irssi theme (based off beastie theme)
 - weechat theme
 - lightline themes (plus & minus). Set to use more or less of current colors
+- compton candy conf
 - scrot showcases irssi and tmux 
 - also see these ![scrots](https://github.com/dkeg/scrots)
 ![git tag](https://github.com/dkeg/scrots/blob/master/_poly.png)
