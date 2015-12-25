@@ -3,6 +3,7 @@
   - You can also find me on linuxbbq
 
 ##### most of my stuff is pretty minimal
+- xinitc
 - vimrc
 - xbindkeys
 - ![sxhkd](https://github.com/dkeg/wmtls/blob/master/.sxhkdrc)
