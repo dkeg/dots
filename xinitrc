@@ -1,10 +1,14 @@
 #!/bin/sh
 # .xinitrc file
 
+. $HOME/bin/colr
+. $HOME/.bg
+
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
 # font bullshit
+#xset +fp ~/.fonts
 xset +fp /usr/share/fonts/local
 xset fp rehash
 
@@ -30,12 +34,9 @@ xset b 100 400 100
 # make the cursor point in the 'right' direction
 xsetroot -cursor_name left_ptr &
 
-# keybinds
-sxhkd -c ~/wmtls/.sxhkdrc &
-#xbindkeys -f ~/.xbindkeysrc &
-
 # set a wallpaper
-$HOME/.bg $
+$wallp
+#$HOME/.bg $
 
 # candy
 #compton --shadow-exclude '!focused' --config $HOME/.compton3.conf --sw-opti  &
@@ -44,15 +45,15 @@ compton --config $HOME/.compton3.conf --sw-opti &
 # hide mouse when inactive
 unclutter &
  
-# Bar
-#sleep 3 && infostat &
+# Status Bar
+#sleep 3 && infostat >/dev/null &
 
-# soft on the eyes
+# easy on the eyes
 #redshift &
 #redshift -l 39.95:75.17 &
-redshift -l 39.95:75.17 -t 5500:3600 -g 0.8 &
+#redshift -l 39.95:75.17 -t 5500:3600 -g 0.8 &
 
-# date and time using osd clock
+# date and time
 sleep 2s && closdck &
 
 ## notifications
@@ -61,17 +62,27 @@ sleep 5s && while :; do battnotif; sleep 450; done &
 
 #urxvtd -q -f -o
 
+# keybinds
+sxhkd -c ~/wmtls/.sxhkdrc &
+#sxhkd -c ~/git/swm/.sxhkdrc &
+#sxhkd -c ~/.config/bspwm/.sxhkdrc &
+#sxhkd -c ~/git/2bwm/.sxhkdrc &
+#sxhkd -c ~/.config/herbstluftwm/.sxhkdrc &
+#xbindkeys -f ~/.xbindkeysrc &
+
 wew | fw &
 
 # Start your window manager using xinit, xinit [wm]
 DEFAULTSESSION=none
 case "$1" in
         none)     exec xwait ;;
+        monster)  exec monsterwm ;;
         swm)      exec swm ;;
         cwm)      exec cwm ;;
         hlwm)     exec herbstluftwm ;;
         rat)      exec ratpoison ;;
         spect)    exec spectrwm ;;
         2bwm)     exec 2bwm ;;
+        bspwm)    exec bspwm ;;
         *)        exec $DEFAULTSESSION ;;
-        esac
+esac

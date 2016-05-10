@@ -1,0 +1,52 @@
+## Compton Candy config
+## dkeg 2015
+#
+## save as  $HOME/.compton.conf
+## call with compton & from .xinitrc
+#
+## Sometimes a little transparency can soften the edges
+active-opacity=0.98;
+inactive-opacity=0.98;
+menu-opacity=0.99;
+shadow-opacity = 0.1;
+frame-opacity = 0.8;
+opacity-rule = [ 
+        "99:class_g = 'URxvt'",
+        "98:class_g = 'Leafpad'",
+        "98:class_g = 'Conkeror'",
+        "98:class_g = 'Vimb'",
+        "98:class_g = 'Surf'",
+        "98:class_g = 'tabbed'",
+        "97:class_g = 'Dmenu'"
+        ];
+
+## Keep the shadows tight
+#shadow = false;
+shadow = true;
+shadow-radius = 5;  
+shadow-offset-x = 2;
+shadow-offset-y = 2;
+#no-dock-shadow = true;
+no-dock-shadow = false;
+no-dnd-shadow = true; 
+clear-shadow = true;
+shadow-exclude = [
+    "n:e:Notifications"
+    #,"class_g = 'Dmenu'"
+    ];
+
+## Soften the window and workspace changes
+fading = true;
+fade-in-step = 0.04;
+fade-out-step = 0.04;   
+
+## Extras
+use-ewmh-active-win = true;
+detect-client-opacity = true;
+sw-opti = true;
+#backend = "glx"
+detect-transient = true;
+detect-client-leader = true;
+shadow-ignore-shaped = true;
+detect-rounded-corners = true;
+#blur-background = true;
