@@ -53,16 +53,28 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-  # prompt options
-  p="━━━"
-  #p="──"
-  #p="──━"
-  #p="»"
-  #p="¯" #drift
-   
-    PS1="\[\$(/home/dkeg/bin/promptd)\]  $p  \[\e[0m\]"
+   # PS1=' »  '
+    #PS1="\$(prompt)"
+   PS1="\[\$(/home/dkeg/bin/promptd)\]  ━━━  \[\e[0m\]"
+   #PS1="\[\$(/home/dkeg/bin/promptd)\] ──  \[\e[0m\]"
+   #PS1="\[\$(/home/dkeg/bin/promptd)\] ──━  \[\e[0m\]"
+   #PS1="\[\$(/home/dkeg/bin/promptd)\] % \[\e[0m\]"
+   #PS1="\[$(tput bold)\$(/home/dkeg/bin/promptd)\]   »  \[\e[0m\]"
+   #PS1="\[\$(/home/dkeg/bin/promptd)\] » \[\e[0m\]"
+   #drift
+   #PS1="\[$(tput bold)\$(/home/dkeg/bin/promptd)\] ¯ \[\e[0m\]"
+   #PS1="\[$(tput bold)\$(/home/dkeg/bin/promptd)\] >\[\e[0m\] " 
+    #PS1='\[\e[1;37m\] >\[\e[0m\] '
+    #PS1='\[\e[1;37m\]\n> \[\e[0m\] '
+    #PS1='\[\e[1;37m\]\n» \[\e[0m\]  '
 else
-    PS1='  $p  ' 
+    #PS1='  >  '
+    PS1='   ━━━    ' 
+    #PS1='   _____  ' 
+    #PS1='  »  '
+   # PS1='\n>  '
+    #PS1="\$(prompt)"
+    #PS1=" % "
 fi
 unset color_prompt force_color_prompt
 
@@ -86,6 +98,14 @@ cd() {
     builtin cd $@ && ls
 }
 
+#cd() {
+#  if [ -n "$1" ]; then
+#builtin cd "$@" && ls --group-directories-first
+#  else
+#builtin cd ~ && ls --group-directories-first
+#  fi
+#}
+
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -108,13 +128,16 @@ function man() {
 
 # quick color view and code
 function colorit() {
-    color=$1
-    doit="cat /home/dkeg/colors/$1"
+    #color=$1
+    color=$(awk 'NR==5{gsub(/</," ");gsub(/>/," ");print $2}' $HOME/.Xresources.d/.colors | cut -d '/' -f5)
+    doit="cat /home/dkeg/colors/$color"
+    #doit="cat /home/dkeg/colors/$1"
     usage() {
         echo "usage colorit 'color file'"
     }
-    test -n "$1" || usage
-        if [ ! -z $1 ];then
+    #test -n "$1" || usage
+        #if [ ! -z $1 ];then
+        if [ ! -z $color ];then
             colors && $doit
         else
             echo 'add the color file'
@@ -142,7 +165,6 @@ function gitpush() {
         git add ${args[0]} && git commit -m "${args[1]}" && git push -u origin ${args[2]}
 }
 
-# may not really work outside my world
 # quickly add a wall to .xinitrc;adjust as needed
 # usage: wallput [tile|fill] [wall] [option] [option]
 # example: wallput fill wall.jpg '-blur 10'
@@ -225,6 +247,8 @@ done
 ##################### end functions ###################
 GIT_PS1_SHOWDIRTYSTATE=true
 export HISTCONTROL=ignoredups
+#COLUMNS=250
+#!source .shell_prompt.sh
 # MUTT BACKGROUND FIX
 COLORFGBG="default;default"
 
