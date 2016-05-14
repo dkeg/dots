@@ -53,29 +53,18 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-   # PS1=' »  '
-    #PS1="\$(prompt)"
-   PS1="\[\$(/home/dkeg/bin/promptd)\]  ━━━  \[\e[0m\]"
-   #PS1="\[\$(/home/dkeg/bin/promptd)\] ──  \[\e[0m\]"
-   #PS1="\[\$(/home/dkeg/bin/promptd)\] ──━  \[\e[0m\]"
-   #PS1="\[\$(/home/dkeg/bin/promptd)\] % \[\e[0m\]"
-   #PS1="\[$(tput bold)\$(/home/dkeg/bin/promptd)\]   »  \[\e[0m\]"
-   #PS1="\[\$(/home/dkeg/bin/promptd)\] » \[\e[0m\]"
-   #drift
-   #PS1="\[$(tput bold)\$(/home/dkeg/bin/promptd)\] ¯ \[\e[0m\]"
-   #PS1="\[$(tput bold)\$(/home/dkeg/bin/promptd)\] >\[\e[0m\] " 
-    #PS1='\[\e[1;37m\] >\[\e[0m\] '
-    #PS1='\[\e[1;37m\]\n> \[\e[0m\] '
-    #PS1='\[\e[1;37m\]\n» \[\e[0m\]  '
+  # prompt options
+  p="━━━"
+  #p="──"
+  #p="──━"
+  #p="»"
+  #p="¯" #drift
+   
+    PS1="\[\$(/home/dkeg/bin/promptd)\]  $p  \[\e[0m\]"
 else
-    #PS1='  >  '
-    PS1='   ━━━    ' 
-    #PS1='   _____  ' 
-    #PS1='  »  '
-   # PS1='\n>  '
-    #PS1="\$(prompt)"
-    #PS1=" % "
+    PS1='  $p  ' 
 fi
+
 unset color_prompt force_color_prompt
 
 # enable color support of ls and also add handy aliases
@@ -92,6 +81,12 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 ################## functions ##################
+
+function wtf(){
+STERM=$1
+dpkg -l|grep ii|grep $TERM|awk '{system("whereis "$2);$1="";$3=$4=""; print
+$0}'
+}
 
 # Automatically do an ls after each cd
 cd() {
