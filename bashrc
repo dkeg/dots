@@ -54,13 +54,19 @@ fi
 
 if [ "$color_prompt" = yes ]; then
   # prompt options
+  p1="━━"
+  p2="━"
+  p3="━━"
   p="━━━"
-  #p="──"
+  p4="──"
+  p5="─"
   #p="──━"
   #p="»"
   #p="¯" #drift
    
-    PS1="\[\$(/home/dkeg/bin/promptd)\]  $p  \[\e[0m\]"
+  PS1="  \[$(tput setaf 8)\]$p5\[\$(/home/dkeg/bin/promptd)\]$p4$p5\[\$(tput setaf 8)\]$p5  \[\e[0m\]" 
+  #PS1="  \[$(tput setaf 8)\]$p2\[\$(/home/dkeg/bin/promptd)\]$p3\[\$(tput setaf 8)\]$p2  \[\e[0m\]" 
+    #PS1="\[\$(/home/dkeg/bin/promptd)\]  $p  \[\e[0m\]"
 else
     PS1='  $p  ' 
 fi
@@ -81,12 +87,6 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 ################## functions ##################
-
-function wtf(){
-STERM=$1
-dpkg -l|grep ii|grep $TERM|awk '{system("whereis "$2);$1="";$3=$4=""; print
-$0}'
-}
 
 # Automatically do an ls after each cd
 cd() {
@@ -125,7 +125,8 @@ function man() {
 function colorit() {
     #color=$1
     color=$(awk 'NR==5{gsub(/</," ");gsub(/>/," ");print $2}' $HOME/.Xresources.d/.colors | cut -d '/' -f5)
-    doit="cat /home/dkeg/colors/$color"
+    doit="cat /home/dkeg/crayolo/$color"
+    #doit="cat /home/dkeg/colors/$color"
     #doit="cat /home/dkeg/colors/$1"
     usage() {
         echo "usage colorit 'color file'"
@@ -133,7 +134,10 @@ function colorit() {
     #test -n "$1" || usage
         #if [ ! -z $1 ];then
         if [ ! -z $color ];then
-            colors && $doit
+            clear
+            $doit && colorspectrum && echo
+            #colorbloks && $doit
+            #colors && $doit
         else
             echo 'add the color file'
         fi
@@ -222,8 +226,8 @@ BARWIDTH=`expr $WIDTH / $NUMBARS`
 
 l="1"
 
-#while [ "$l" -lt $HEIGHT ]; do
-while [ "$l" -lt $h ]; do
+while [ "$l" -lt $HEIGHT ]; do
+#while [ "$l" -lt $h ]; do
     b="0"
     while [ "$b" -lt $NUMBARS ]; do
         s="0"
