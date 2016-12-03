@@ -19,7 +19,7 @@ xrdb -merge ~/.Xresources &
 setxkbmap -option terminate:ctrl_alt_bksp
 
 # sets your keyboard to 'us' keymap
-#setxkbmap us &
+setxkbmap us &
 
 # caps lock to backspace
 setxkbmap -option caps:escape
@@ -36,17 +36,15 @@ xsetroot -cursor_name left_ptr &
 
 # set a wallpaper
 $wallp
-#$HOME/.bg $
 
 # candy
-#compton --shadow-exclude '!focused' --config $HOME/.compton3.conf --sw-opti  &
-compton --config $HOME/.compton3.conf --sw-opti &
+#compton --config $HOME/.compton.conf --sw-opti &
 
 # hide mouse when inactive
-unclutter &
+#unclutter &
  
 # Status Bar
-#sleep 3 && infostat >/dev/null &
+#sleep 3 && infostats >/dev/null &
 
 # easy on the eyes
 #redshift &
@@ -54,35 +52,39 @@ unclutter &
 #redshift -l 39.95:75.17 -t 5500:3600 -g 0.8 &
 
 # date and time
-sleep 2s && closdck &
+#sleep 2s && closdck &
 
 ## notifications
 #sleep 5s && while :; do notifs; sleep 650; done &
 sleep 5s && while :; do battnotif; sleep 450; done &
 
-#urxvtd -q -f -o
 
 # keybinds
-sxhkd -c ~/wmtls/.sxhkdrc &
-#sxhkd -c ~/git/swm/.sxhkdrc &
-#sxhkd -c ~/.config/bspwm/.sxhkdrc &
-#sxhkd -c ~/git/2bwm/.sxhkdrc &
-#sxhkd -c ~/.config/herbstluftwm/.sxhkdrc &
 #xbindkeys -f ~/.xbindkeysrc &
 
-wew | fw &
+# urxvt session
+sleep 3s && urxvt &
+#urxvtd -q -f -o
 
 # Start your window manager using xinit, xinit [wm]
 DEFAULTSESSION=none
 case "$1" in
-        none)     exec xwait ;;
+        none)     sxhkd -c ~/wmtls/.sxhkdrc &
+                  #sleep 2s && infostats &
+                  sleep 2s && closdck &
+                  #rainbow &
+                  wew|fw &
+                  exec xwait ;;
         monster)  exec monsterwm ;;
         swm)      exec swm ;;
         cwm)      exec cwm ;;
         hlwm)     exec herbstluftwm ;;
         rat)      exec ratpoison ;;
         spect)    exec spectrwm ;;
-        2bwm)     exec 2bwm ;;
-        bspwm)    exec bspwm ;;
+        2bwm)     sxhkd -c ~/git/2bwm/.sxhkdrc &
+                  sleep 2s && closdck &
+                  exec 2bwm ;;
+        bspwm)    sxhkd -c ~/.config/bspwm/.sxhkdrc &
+                  exec bspwm ;;
         *)        exec $DEFAULTSESSION ;;
 esac

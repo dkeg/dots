@@ -1,0 +1,112 @@
+## windowchef sxkdrc file
+## dkeg 2016
+
+## globals
+# reload sxhkd
+mod4 + Escape
+  pkill -USR1 -x sxhkd
+
+# reload wchf
+alt + shift + r 
+  ~/.config/windowchef/windowchefrc 
+
+# mouse movement
+mod4 + !button{1,3}
+  {wmv,wrs} -a %i %i $(pfw)
+
+# quiters 
+super + ctrl + q 
+  waitron wm_quit 0
+
+super + q
+  waitron window_close
+
+# manage windows 
+super + {h,j,k,l}
+  waitron window_move {-20 0, 0 20, 0 -20, 20 0}
+
+super + shift + {h,j,k,l}
+  waitron window_resize {-20 0, 0 20, 0 -20, 20 0}
+
+super + w
+  waitron window_hor_maximize
+
+super + t
+  waitron window_ver_maximize
+
+super + {_,shift +}{1-4}
+  waitron {group_toggle,group_add_window} {1-4}
+
+super + ctrl + r
+  waitron group_remove_window
+
+super + {_,ctrl + }f
+  max -{m,f} $(pfw)
+
+super + {y,u,b,n,g}
+  waitron window_snap {topleft,topright,bottomleft,bottomright,middle}
+
+alt + f
+  waitron window_monocle
+
+super + s
+  ~/bin/split $(pfw) 
+
+super + shift + f
+  waitron window_maximize
+
+# cycle windows
+alt + j
+  waitron window_cycle_in_group
+
+alt + Tab
+  waitron window_cycle
+
+alt + shift + Tab
+  waitron window_rev_cycle
+
+## sprinkles
+# toggle compton files
+alt + {_,shift +}c
+  ~/bin/comp {more,less}
+
+# volume 
+alt + {equal,minus,F8} 
+  ~/bin/volume {+,-,off}
+
+# music
+mod4 +  equal
+  ~/bin/music +; \
+  popper '' $(~/bin/music artist)', '$(~/bin/music title)
+
+mod4 + minus
+  ~/bin/music -; \
+  popper '' $(~/bin/music artist)', '$(~/bin/music title)
+
+mod4 + Home
+  ~/bin/music play; \
+  popper '' $(~/bin/music artist)', '$(~/bin/music title)
+
+mod4 + shift + Home
+  ~/bin/music pause; \
+  popper '' $(~/bin/music artist)', '$(~/bin/music title)
+
+super + {_,shift +}Return
+  {urxvt,st}
+
+## general 
+alt + p
+   ministat
+
+mod4 + {_,shift + }p
+  {demon,nowPlaying}
+
+alt + {_,shift +}b
+  {vimb,firefox}
+
+alt + n
+  leafpad
+
+# what time is it
+alt + d
+  popper  ' ' $(date  +'%R')
