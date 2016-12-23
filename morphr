@@ -74,16 +74,19 @@ dw() {
   file=$dir/config.h
 
   # wm border color options
+  # NOTICE: color1 will return 7 values (1,10,11,12,13,14,15)
+  # HACK fix, give me only the first one - add ....{print $2}|awk NR==1
+  # Or just use *color9
   foc=$(xrdb -query|awk '/\*color8/ {print $2}')
   unfoc=$(xrdb -query|awk '/\*color0/ {print $2}')
-  fixc=$(xrdb -query|awk '/\*color1/ {print $2}')
+  fixc=$(xrdb -query|awk '/\*color9/ {print $2}')
   unkil=$(xrdb -query|awk '/\*color6/ {print $2}')
   fixunk=$(xrdb -query|awk '/\*color5/ {print $2}')
   outr=$(xrdb -query|awk '/\*color0/ {print $2}')
   emp=$(xrdb -query|awk '/\*background/ {print $2}')
 
   # take the colors from the config.h and place into an array
-  wmcol=$(cat $file|awk '/\*colors/ {print $6}'|cut -d '}' -f1|awk '{gsub(/"/," ");for (i=2;i<=14;i=i+2) printf "%s ", $i}')
+  wmcol=$(cat $file|awk '/\*colors/ {print $6}'|cut -d '}' -f1|awk '{gsub(/"/," ");for (i=2;i<=14;i=i+2) print $i}')
   arr=($wmcol)
 
   # action; set the new colors}
