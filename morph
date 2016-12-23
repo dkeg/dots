@@ -83,7 +83,7 @@ dw() {
   emp=$(xrdb -query|awk '/\*background/ {print $2}')
 
   # take the colors from the config.h and place into an array
-  wmcol=$(cat $file|awk '/\*colors/ {print $6}'|cut -d '}' -f1|awk '{gsub(/"/," ");print $2,$4,$6,$8,$10,$12,$14}')
+  wmcol=$(cat $file|awk '/\*colors/ {print $6}'|cut -d '}' -f1|awk '{gsub(/"/," ");for (i=2;i<=14;i=i+2) printf "%s ", $i}')
   arr=($wmcol)
 
   # action; set the new colors}
