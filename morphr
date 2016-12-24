@@ -40,7 +40,8 @@ done
 dw() {
   ## paths - update as needed
   dir=$HOME/git/dwm
-  file=$dir/config.h
+  #file=$dir/config.h
+  file=$dir/configTEST2.h
 
   ## take new colors from xrdb
   NewbgNORM=$(xrdb -query|awk '/\*color0/ {print $2}')
@@ -50,8 +51,15 @@ dw() {
   NewbgFOCUS=$(xrdb -query|awk '/\*color4/ {print $2}')
 
   ## grab current border colors
-  ## note that I changed the naming to sensible labels
-  ## old labels: col_gray1,col_gray2,col_gray3,col_gray4,col_cyan - Really?
+  ## Note that I changed the naming to sensible labels
+  ## old labels: col_gray1,col_gray2,col_gray3,col_gray4,col_cyan - Really?¬
+  ## let's change those for you to labels that mean something
+  sed -i "s/"col_gray1"/"bg_norm"/;
+          s/"col_gray2"/"bdr_norm"/;
+          s/"col_gray3"/"fg_norm"/;
+          s/"col_gray4"/"fg_focus"/;
+          s/"col_cyan"/"bg_focus"/g" $file
+
   CurbgNORM=$(awk '/\char bg_norm/ {gsub(/"/,"");gsub(/;/,"");print $6}' $file)
   CurbdrNORM=$(awk '/\char bdr_norm/ {gsub(/"/,"");gsub(/;/,"");print $6}' $file)
   CurfgNORM=$(awk '/\char fg_norm/ {gsub(/"/,"");gsub(/;/,"");print $6}' $file)
@@ -76,11 +84,9 @@ dw() {
   file=$dir/config.h
 
   # wm border color options
-  # NOTICE: color1 will return 7 values (1,10,11,12,13,14,15)
-  # HACK fix, give me only the first one - add ....{print $2}|awk NR==1
-  # Or just use *color9
   foc=$(xrdb -query|awk '/\*color8/ {print $2}')
   unfoc=$(xrdb -query|awk '/\*color0/ {print $2}')
+  #fixc=$(xrdb -query|awk '/\*color1/ {print $2}'|awk NR==1) #color1 returns 7 values (1,10,11,12,13,14,15), hack fix, give me only the first one. Or just use *color9!
   fixc=$(xrdb -query|awk '/\*color9/ {print $2}')
   unkil=$(xrdb -query|awk '/\*color6/ {print $2}')
   fixunk=$(xrdb -query|awk '/\*color5/ {print $2}')
@@ -88,6 +94,7 @@ dw() {
   emp=$(xrdb -query|awk '/\*background/ {print $2}')
 
   # take the colors from the config.h and place into an array
+  #wmcol=$(cat $file|awk '/\char *colors/ {print $6}'|cut -d '}' -f1|awk '{gsub(/"/," ");print $2,$4,$6,$8,$10,$12,$14}')
   wmcol=$(cat $file|awk '/\*colors/ {print $6}'|cut -d '}' -f1|awk '{gsub(/"/," ");for (i=2;i<=14;i=i+2) print $i}')
   arr=($wmcol)
 
