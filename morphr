@@ -41,7 +41,7 @@ dw() {
   ## paths - update as needed
   dir=$HOME/git/dwm
   #file=$dir/config.h
-  file=$dir/configTEST2.h
+  file=$dir/config.h
 
   ## take new colors from xrdb
   NewbgNORM=$(xrdb -query|awk '/\*color0/ {print $2}')
