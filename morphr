@@ -50,6 +50,8 @@ dw() {
   NewbgFOCUS=$(xrdb -query|awk '/\*color4/ {print $2}')
 
   ## grab current border colors
+  ## note that I changed the naming to sensible labels
+  ## old labels: col_gray1,col_gray2,colo_gray3,col_gray4,col_cyan - Really?
   CurbgNORM=$(awk '/\char bg_norm/ {gsub(/"/,"");gsub(/;/,"");print $6}' $file)
   CurbdrNORM=$(awk '/\char bdr_norm/ {gsub(/"/,"");gsub(/;/,"");print $6}' $file)
   CurfgNORM=$(awk '/\char fg_norm/ {gsub(/"/,"");gsub(/;/,"");print $6}' $file)
