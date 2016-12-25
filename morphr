@@ -1,9 +1,11 @@
 #! /bin/bash
 
-## morph
+## -- Title:    morphr
+## -- Author:   dkeg
+## -- Created:  2016
+
 ## match border colors from current colorscheme for 2wm, dwm, 2bwm
 ## go through and adjust the color choices as needed
-## dkeg 2016
 
 ## which wm
 wms=( 2wm dwm 2bwm )
@@ -40,7 +42,6 @@ done
 dw() {
   ## paths - update as needed
   dir=$HOME/git/dwm
-  #file=$dir/config.h
   file=$dir/config.h
 
   ## take new colors from xrdb
@@ -54,11 +55,14 @@ dw() {
   ## Note that I changed the naming to sensible labels
   ## old labels: col_gray1,col_gray2,col_gray3,col_gray4,col_cyan - Really?¬
   ## let's change those for you to labels that mean something
-  sed -i "s/"col_gray1"/"bg_norm"/;
-          s/"col_gray2"/"bdr_norm"/;
-          s/"col_gray3"/"fg_norm"/;
-          s/"col_gray4"/"fg_focus"/;
-          s/"col_cyan"/"bg_focus"/g" $file
+  check=$(cat $file|grep "bg_norm")
+  if [[ ! "$check" ]]; then
+      sed -i "s/"col_gray1"/"bg_norm"/;
+              s/"col_gray2"/"bdr_norm"/;
+              s/"col_gray3"/"fg_norm"/;
+              s/"col_gray4"/"fg_focus"/;
+              s/"col_cyan"/"bg_focus"/g" $file
+  fi
 
   CurbgNORM=$(awk '/\char bg_norm/ {gsub(/"/,"");gsub(/;/,"");print $6}' $file)
   CurbdrNORM=$(awk '/\char bdr_norm/ {gsub(/"/,"");gsub(/;/,"");print $6}' $file)
@@ -94,7 +98,6 @@ dw() {
   emp=$(xrdb -query|awk '/\*background/ {print $2}')
 
   # take the colors from the config.h and place into an array
-  #wmcol=$(cat $file|awk '/\char *colors/ {print $6}'|cut -d '}' -f1|awk '{gsub(/"/," ");print $2,$4,$6,$8,$10,$12,$14}')
   wmcol=$(cat $file|awk '/\*colors/ {print $6}'|cut -d '}' -f1|awk '{gsub(/"/," ");for (i=2;i<=14;i=i+2) print $i}')
   arr=($wmcol)
 
@@ -120,6 +123,8 @@ case $mywm in
    dwm) dw
     ;;
   2bwm) 2b
+    ;;
+     *) echo "You're not runnning a compatible wm. Exiting"
     ;;
 esac
 
