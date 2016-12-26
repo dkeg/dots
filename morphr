@@ -7,6 +7,11 @@
 ## match border colors from current colorscheme for 2wm, dwm, 2bwm
 ## go through and adjust the color choices as needed
 
+usage() {
+  echo "usaage: $(basename $0) <2wm|dwm|2bwm>"
+  exit 1
+}
+
 ## which wm
 wms=( 2wm dwm 2bwm )
 for wm in ${wms[@]}; do
@@ -125,6 +130,7 @@ case $mywm in
   2bwm) 2b
     ;;
      *) echo "You're not runnning a compatible wm. Exiting"
+       usage
     ;;
 esac
 
