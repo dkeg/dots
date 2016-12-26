@@ -123,15 +123,11 @@ dw() {
 } 
 
 case $mywm in 
-   2wm) 2w 
-    ;;
-   dwm) dw
-    ;;
-  2bwm) 2b
-    ;;
-     *) echo "You're not runnning a compatible wm. Exiting"
-       usage
-    ;;
+     2wm) 2w ;;
+     dwm) dw ;;
+    2bwm) 2b ;;
+       *) echo "You're not runnning a compatible wm. Exiting"
+         usage ;;
 esac
 
 ## end file
