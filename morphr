@@ -21,6 +21,23 @@ for wm in ${wms[@]}; do
   fi
 done
 
+## grap colors from xrdb
+options=$(xrdb -query|egrep '(color|ground)'|awk '{print $2}')
+color=($options)
+  bg=${color[0]}
+  blk=${color[1]}
+  bblk=${color[15]}
+  red=${color[2]}
+  grn=${color[9]}
+  ylw=${color[10]}
+  blu=${color[11]}
+  mag=${color[12]}
+  cyn=${color[13]}
+  wht=${color[14]}
+  fg=${color[17]}
+
+  #output order (bg,0,1,10,11,12,13,14,15,2,3,4,5,6,7,8,9,fg)
+
 ## 2wm - required to log out and back in
 2w() {
   ## paths - update as needed
@@ -31,9 +48,9 @@ done
   CurNORM=$(awk '/\NORMCOLOR/ {gsub(/"/,"");print $3}' $file)
   CurSEL=$(awk '/\SELCOLOR/ {gsub(/"/,"");print $3}' $file)
 
-  ## take new colors from xrdb
-  NewNORM=$(xrdb -query|awk '/\*color0/ {print $2}')
-  NewSEL=$(xrdb -query|awk '/\*color8/ {print $2}')
+  ## assign new colors
+  NewNORM=$blk
+  NewSEL=$bblk
 
   ## update border colors from xrdb
   sed -i "s/$CurNORM/"$NewNORM"/;
@@ -49,12 +66,12 @@ dw() {
   dir=$HOME/git/dwm
   file=$dir/config.h
 
-  ## take new colors from xrdb
-  NewbgNORM=$(xrdb -query|awk '/\*color0/ {print $2}')
-  NewbdrNORM=$(xrdb -query|awk '/\*color8/ {print $2}')
-  NewfgNORM=$(xrdb -query|awk '/\*color7/ {print $2}')
-  NewfgFOCUS=$(xrdb -query|awk '/\*color7/ {print $2}')
-  NewbgFOCUS=$(xrdb -query|awk '/\*color4/ {print $2}')
+  ## assign new colors
+  NewbgNORM=$blk
+  NewbdrNORM=$bblk
+  NewfgNORM=$wht
+  NewfgFOCUS=$wht
+  NewbgFOCUS=$blu
 
   ## grab current border colors
   ## Note that I changed the naming to sensible labels
@@ -93,14 +110,13 @@ dw() {
   file=$dir/config.h
 
   # wm border color options
-  foc=$(xrdb -query|awk '/\*color8/ {print $2}')
-  unfoc=$(xrdb -query|awk '/\*color0/ {print $2}')
-  #fixc=$(xrdb -query|awk '/\*color1/ {print $2}'|awk NR==1) #color1 returns 7 values (1,10,11,12,13,14,15), hack fix, give me only the first one. Or just use *color9!
-  fixc=$(xrdb -query|awk '/\*color9/ {print $2}')
-  unkil=$(xrdb -query|awk '/\*color6/ {print $2}')
-  fixunk=$(xrdb -query|awk '/\*color5/ {print $2}')
-  outr=$(xrdb -query|awk '/\*color0/ {print $2}')
-  emp=$(xrdb -query|awk '/\*background/ {print $2}')
+  foc=$bblk
+  unfoc=$blk
+  fixc=$red
+  unkil=$cyn
+  fixunk=$mag
+  outr=$blk
+  emp=$bg
 
   # take the colors from the config.h and place into an array
   wmcol=$(cat $file|awk '/\*colors/ {print $6}'|cut -d '}' -f1|awk '{gsub(/"/," ");for (i=2;i<=14;i=i+2) print $i}')
@@ -122,12 +138,12 @@ dw() {
   xdotool key "super+ctrl+r"
 } 
 
-case $mywm in 
+case $mywm in
      2wm) 2w ;;
      dwm) dw ;;
     2bwm) 2b ;;
        *) echo "You're not runnning a compatible wm. Exiting"
-         usage ;;
+          usage ;;
 esac
 
 ## end file
