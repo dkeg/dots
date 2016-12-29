@@ -61,6 +61,9 @@ color=($options)
 }
 
 ## dwm - required to log out and back in
+## or do this
+## https://wiki.archlinux.org/index.php/dwm#Restart_dwm_without_logging_out_or_closing_programs
+## same will work for 2wm
 dw() {
   ## paths - update as needed
   dir=$HOME/git/dwm
