@@ -3,7 +3,7 @@
   - You can also find me on linuxbbq
 
 ##### most of my stuff is pretty minimal
-- morphr - updated colors for 2wm,dwm,2bwm based on xrdb (moved to dkeg/inspin)
+- vimb config
 - bashrc 
 - xinitc
 - vimrc

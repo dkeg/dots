@@ -1,0 +1,19 @@
+## dkeg vimb config 2017
+
+set statusbar=false
+set input-autohide=true
+set defaultencoding=utf-8
+set defaultfont=terminus
+set fontsize=8
+set minimumfontsize=8
+set monofont=neep
+set monofontsize=8
+set sansfont=dina medium
+set seriffont=dina medium
+set completion-font=dweep
+set status-font=dweep
+set input-font-normal=dweep
+set input-font-error=dweep
+
+set dns-prefetching=true
+set home-page=https://duckduckgo.com
