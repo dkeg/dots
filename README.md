@@ -4,7 +4,7 @@
 
 ##### most of my stuff is pretty minimal
 - cmus theme - dijon 
-![cmus theme](scrots/_simplicity.png)
+![simplicity](scrots/_simplicity.png)
 - vimb config
 - bashrc 
 - xinitc
