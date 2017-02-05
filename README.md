@@ -1,6 +1,6 @@
-##### Simple collection of some dotfiles 
-  - Ping me if you want anything
-  - You can also find me on linuxbbq
+#### Simple collection of some dotfiles 
+###### Ping me if you want anything
+######You can also find me on linuxbbq
 
 - cmus theme - dijon   
 ![simplicity](https://github.com/dkeg/scrots/blob/master/captures/_simplicity.png)
