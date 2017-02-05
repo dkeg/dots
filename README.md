@@ -3,8 +3,8 @@
   - You can also find me on linuxbbq
 
 ##### most of my stuff is pretty minimal
-- cmus theme - dijon 
-![simplicity](scrots/_simplicity.png)
+- cmus theme - dijon   
+![simplicity](https://github.com/dkeg/scrots/blob/master/_simplicity.png)
 - vimb config
 - bashrc 
 - xinitc
